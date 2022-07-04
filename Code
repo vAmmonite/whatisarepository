@@ -1,0 +1,177 @@
+import math
+
+prevvol = 0
+total = 0
+flag = False
+flag2 = False
+loop1 = False
+supported_shapes = ["pyramid", "prism", "cone", "cube", "sphere", "cylinder", "semisphere"]
+
+def squarefn(sqrsidelength):
+    aresquare = sqrsidelength**2
+    return aresquare
+
+def rectanglefn(reclength, recwidth):
+    arerectangle = reclength * recwidth
+    return arerectangle
+
+def trianglefn(triheight, tribase):
+    aretriangle = (triheight * tribase) / 2
+    return aretriangle
+
+def rhombusfn(rhoheight, rhobase):
+    arerhombus = rhoheight * rhobase
+    return arerhombus
+
+def trapeziumfn(tratopheight, trabottomheight, traheight):
+    aretrapezoid = traheight * ((tratopheight + trabottomheight) / 2)
+    return aretrapezoid
+
+def cylinderfn(cylheight, cylradius):
+    volcylinder = (math.pi * cylradius ** 2) * cylheight
+    return volcylinder
+
+def prismfn(prislength, prisbase):
+    volprism = prisbase * prislength
+    return volprism
+
+def spherefn(sphradius):
+    volsphere = 4 / 3 * math.pi * (sphradius ** 3)
+    return volsphere
+
+def semispherefn(semradius):
+    volsemisphere = (4 / 3 * math.pi * (semradius ** 3)) / 2
+    return volsemisphere
+
+def cubefn(cublength):
+    volcube = cublength ** 3
+    return volcube
+
+def pyramidfn(pyrbase, pyrheight):
+    volpyramid = (pyrbase * pyrheight) / 3
+    return volpyramid
+
+def conefn(conheight, conradius):
+    volcone = (conheight * math.pi * conradius ** 2) / 3
+    return volcone
+
+print("INFORMATION: the supported 3D shapes are cylinders, prisms, spheres, semispheres, cones, cubes and pyramids.")
+print("To calculate the area of a 2D shape, type 'calc' and a calculator will open where you can specify any of the following shapes: square, rectangle, triangle, rhombus or trapezium.")
+print("After calculating the volume of each shape, type 'a' or 's' to determine if the shape will be added or subtracted. Type 'c' to calculate the total volume of your composite shape.")
+print("Please answer in lowercase only.")
+
+roundamount = int(input("How many digits to round to? "))
+
+while True:
+    if flag == False:
+        current = input("What is the first shape? ")
+    else:
+        current = input("What is the next shape? ")
+
+    if current == "c":
+        break
+
+    if current == "cylinder":
+        cylheight = float(input("What is the height of the cylinder? "))
+        cylradius = float(input("What is the radius of the cylinder? "))
+        volcylinder = cylinderfn(cylheight, cylradius)
+        currentvol = volcylinder
+
+    if current == "prism":
+        prislength = float(input("What is the length of the prism? "))
+        prisbase = input("What is the area of the base of the prism? ")
+        if prisbase == "calc":
+            shapetype = input("What type of shape is it? ")
+            if shapetype == "square":
+                sqrsidelength = float(input("What is the side length? "))
+                prisbase = squarefn(sqrsidelength)
+            if shapetype =="triangle":
+                triheight = float(input("What is the triangle's height? "))
+                tribase = float(input("What is the triangle's base length? "))
+                prisbase = trianglefn(triheight, tribase)
+            if shapetype == "rectangle":
+                reclength = float(input("What is the length of the rectangle? "))
+                recwidth = float(input("What is the width of the rectangle? "))
+                prisbase = rectanglefn(reclength, recwidth)
+            if shapetype == "rhombus":
+                rhoheight = float(input("What is the height of the rhombus? "))
+                rhobase = float(input("What is the length of the base of the rhombus? "))
+                prisbase = rhombusfn(rhoheight, rhobase)
+            if shapetype == "trapezium":
+                tratopheight = float(input("What is the top length of the trapezium? "))
+                trabottomheight = float(input("What is the bottom length of the trapezium? "))
+                traheight = float(input("What is the height of the trapezium? "))
+                prisbase = trapeziumfn(tratopheight, trabottomheight, traheight)
+        else:
+            prisbase = float(prisbase)
+        volprism = prismfn(prislength, prisbase)
+        currentvol = volprism
+
+    if current == "sphere":
+        sphradius = float(input("What is the radius of the sphere? "))
+        volsphere = spherefn(sphradius)
+        currentvol = volsphere
+
+    if current == "semisphere":
+        semradius = float(input("What is the radius of the semisphere? "))
+        volsemisphere = semispherefn(semradius)
+        currentvol = volsemisphere
+
+    if current == "cube":
+        cublength = float(input("What is the side length of the cube? "))
+        volcube = cubefn(cublength)
+        currentvol = volcube
+
+    if current == "cone":
+        conheight = float(input("What is the height of the cone? "))
+        conradius = float(input("What is the radius of the cone? "))
+        volcone = conefn(conheight, conradius)
+        currentvol = volcone
+
+    if current == "pyramid":
+        pyrheight = float(input("What is the height of the pyramid? "))
+        pyrbase = input("What is the area of the base of the pyramid? ")
+        if pyrbase == "calc":
+            shapetype = input("What type of shape is it? ")
+            if shapetype == "square":
+                sqrsidelength = float(input("What is the side length? "))
+                pyrbase = squarefn(sqrsidelength)
+            if shapetype =="triangle":
+                triheight = float(input("What is the triangle's height? "))
+                tribase = float(input("What is the triangle's base length? "))
+                pyrbase = trianglefn(triheight, tribase)
+            if shapetype == "rectangle":
+                reclength = float(input("What is the length of the rectangle? "))
+                recwidth = float(input("What is the width of the rectangle? "))
+                pyrbase = rectanglefn(reclength, recwidth)
+            if shapetype == "rhombus":
+                rhoheight = float(input("What is the height of the rhombus? "))
+                rhobase = float(input("What is the length of the base of the rhombus? "))
+                pyrbase = rhombusfn(rhoheight, rhobase)
+            if shapetype == "trapezium":
+                tratopheight = float(input("What is the top length of the trapezium? "))
+                trabottomheight = float(input("What is the bottom length of the trapezium? "))
+                traheight = float(input("What is the height of the trapezium? "))
+                pyrbase = trapeziumfn(tratopheight, trabottomheight, traheight)
+        else:
+            pyrbase = float(pyrbase)
+        volpyramid = pyramidfn( pyrbase, pyrheight)
+        currentvol = volpyramid
+
+    if current not in supported_shapes:
+            print("That is not a supported shape. Please try again.")
+
+    if flag == True:
+        addorsubtract = input("Is this added or subtracted from the previous shape? (a or s) ")
+        if addorsubtract == "a":
+            total = prevvol + currentvol
+        elif addorsubtract == "s":
+            total = prevvol - currentvol
+        flag2 = True
+
+    flag = True
+
+    if flag2 == False:
+        prevvol = currentvol
+    else:
+        prevvol = total
